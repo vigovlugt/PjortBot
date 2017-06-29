@@ -12,7 +12,7 @@ const rl = readline.createInterface({
 
 //SETTINGS
 let prefix = "/";
-let defaultChannel = "329601822132273152";
+let defaultChannel = "212202805467938816";
 
 
 //defaultChannel = client.channels.get(defaultChannel);
@@ -68,7 +68,7 @@ rl.on('line', (input) => {
 
 client.on('ready', () => {
   console.log(' I am ready!');
-  setInterval(setAvatar,600000);
+  setInterval(tenMin,600000);
 });
 
 
@@ -124,11 +124,14 @@ client.on('message', message => {
       }
     }
 
-    for (var i = 0; i < avatarReactions.length; i++) {
-      if (avatarReactions[i].message == message.content) {
+    for (var i = 0; i < avatarMessages.length; i++) {
+      if (avatarMessages[i].message == message.content) {
 
         let randomNum = Math.floor(Math.random() * pjorts.length);
         let fileName = pjorts[randomNum];
+        let randomMessage = Math.floor(Math.random() * avatarReactions.length)
+
+        message.channel.send(avatarReactions[randomMessage].message);
         message.channel.sendFile("./PJORTS/" + fileName);
         break;
       }
@@ -138,6 +141,12 @@ client.on('message', message => {
 
 });
 
+function tenMin(){
+  setAvatar();
+  sendRandomMessage();
+}
+
+
 function help(message){
   var help = "goedendag, ik ben pjort. wat wilt u tegen mij zeggen?";
   for (var i = 0; i < reactionsDict.length; i++) {
@@ -146,8 +155,8 @@ function help(message){
 
   help += "\n";
 
-  for (var i = 0; i < avatarReactions.length; i++) {
-    help += "\n -" + avatarReactions[i].message;
+  for (var i = 0; i < avatarMessages.length; i++) {
+    help += "\n -" + avatarMessages[i].message;
   }
   message.channel.send(help);
 }
@@ -159,7 +168,14 @@ fs.readdir("./PJORTS", (err, files) => {
   });
 })
 
-function setAvatar(){
+function sendRandomMessage()
+{
+  let randomMessage = Math.floor(Math.random() * randomMessages.length)
+  client.channels.get(defaultChannel).send(randomMessages[randomMessage].message);
+}
+
+function setAvatar()
+{
   let randomNum = Math.floor(Math.random() * pjorts.length);
 
   let fileName = pjorts[randomNum];
@@ -167,12 +183,19 @@ function setAvatar(){
   client.user.setAvatar(fs.readFileSync('./PJORTS/' + fileName));
 }
 
-var avatarReactions = [
+var avatarMessages = [
   {"message":"wie houdt er van penissen"},
   {"message":"wie houdt er van kaas"},
   {"message":"wie is gay"},
   {"message":"wie gaat dik"}
 ]
+var avatarReactions = [
+  {"message":"deze jongen"},
+  {"message":"ikke"},
+  {"message":"wat denk je zelf zemmel"},
+  {"message":"ik natuurlijk"}
+]
+
 var randomMessages = [
   {"message":"ik wil kaas"},
   {"message":"ik ben te cool voor jullie allemaal"},
