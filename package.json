@@ -1,0 +1,28 @@
+{
+  "name": "pjortbot",
+  "version": "1.0.0",
+  "description": "pjortbot for discord",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vigovlugt/PjortBot.git"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "vigovlugt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vigovlugt/PjortBot/issues"
+  },
+  "homepage": "https://github.com/vigovlugt/PjortBot#readme"
+}

@@ -171,6 +171,7 @@ var avatarReactions = [
   {"message":"wie houdt er van penissen"},
   {"message":"wie houdt er van kaas"},
   {"message":"wie is gay"},
+  {"message":"wie gaat dik"}
 ]
 var randomMessages = [
   {"message":"ik wil kaas"},
